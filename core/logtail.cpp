@@ -267,7 +267,7 @@ void do_worker_process() {
     pPlugin->Resume();
     ObserverManager::GetInstance()->Reload();
     CheckPointManager::Instance()->LoadCheckPoint();
-    // AdhocCheckpointManager::GetInstance()->LoadAdhocCheckpoint();
+    AdhocCheckpointManager::GetInstance()->LoadAdhocCheckpoint();
 
     // added by xianzhi(bowen.gbw@antfin.com)
     // read local data_integrity json file and line count file

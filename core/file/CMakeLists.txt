@@ -1,4 +1,4 @@
-# Copyright 2023 iLogtail Authors
+# Copyright 2022 iLogtail Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,12 +13,16 @@
 # limitations under the License.
 
 cmake_minimum_required(VERSION 2.9)
-project(input)
+project(file)
 
 file(GLOB LIB_SOURCE_FILES *.cpp *.h)
 append_source_files(LIB_SOURCE_FILES)
 add_library(${PROJECT_NAME} STATIC ${LIB_SOURCE_FILES})
+target_link_libraries(${PROJECT_NAME} checkpoint)
+target_link_libraries(${PROJECT_NAME} common)
 target_link_libraries(${PROJECT_NAME} config)
+target_link_libraries(${PROJECT_NAME} config_manager)
+target_link_libraries(${PROJECT_NAME} controller)
+target_link_libraries(${PROJECT_NAME} event_handler)
 target_link_libraries(${PROJECT_NAME} pipeline)
-target_link_libraries(${PROJECT_NAME} file)
-target_link_libraries(${PROJECT_NAME} reader)
+target_link_libraries(${PROJECT_NAME} polling)

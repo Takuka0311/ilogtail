@@ -56,6 +56,8 @@ public:
     //************************************
     bool IsValidToReadLog(const LogstoreFeedBackKey& logstoreKey);
 
+    bool IsValidToReadAdhocLog(const LogstoreFeedBackKey& logstoreKey);
+
     void SetFeedBack(LogstoreFeedBackInterface* pInterface);
 
     // call it after holdon or processor not started

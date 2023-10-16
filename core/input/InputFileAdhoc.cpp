@@ -14,28 +14,33 @@
  * limitations under the License.
  */
 
-#pragma once
-#include "config/Config.h"
-#include "file_server/AdhocFileManager.h"
+#include "InputFileAdhoc.h"
 
 namespace logtail {
 
-class InputStaticFile {
-private:
-    void GetStaticFileList();
-    void SortFileList();
+bool InputFileAdhoc::Init(const Json::Value& config) {
+    mAdhocFileManager = AdhocFileManager::GetInstance();
+    mJobName = "";
+}
 
-    std::string mJobName;
-    AdhocFileManager* mAdhocFileManager;
-    std::vector<StaticFile> mFileList;
-    
-public:
-    InputStaticFile(/* args */);
-    ~InputStaticFile();
+bool InputFileAdhoc::Start() {
+    GetStaticFileList();
+    mAdhocFileManager->AddJob(mJobName, mFilePathList);
+}
 
-    void Init(Config &&config);
-    void Start();
-    void Stop(bool isRemoving);
-};
+bool InputFileAdhoc::Stop(bool isPipelineRemoving) {
+    if (isPipelineRemoving) {
+        mAdhocFileManager->DeleteJob(mJobName);
+    }
+}
+
+// Init mFilePathList
+void InputFileAdhoc::GetStaticFileList() {
+
+    SortFileList();
+}
+
+void InputFileAdhoc::SortFileList() {
+}
 
 }

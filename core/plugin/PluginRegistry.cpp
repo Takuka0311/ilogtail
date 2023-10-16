@@ -30,6 +30,7 @@
 #include "plugin/creator/CProcessor.h"
 #include "plugin/creator/DynamicCProcessorCreator.h"
 #include "plugin/creator/StaticProcessorCreator.h"
+#include "input/InputFileAdhoc.h"
 #include "processor/ProcessorDesensitizeNative.h"
 #include "processor/ProcessorFilterNative.h"
 #include "processor/ProcessorParseApsaraNative.h"

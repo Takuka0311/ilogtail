@@ -24,7 +24,9 @@
 #include "common/DynamicLibHelper.h"
 #include "plugin/creator/PluginCreator.h"
 #include "plugin/instance/PluginInstance.h"
+#include "plugin/instance/InputInstance.h"
 #include "plugin/instance/ProcessorInstance.h"
+#include "plugin/instance/FlusherInstance.h"
 
 struct processor_interface_t;
 
@@ -39,7 +41,7 @@ public:
     // 卸载所有插件
     void UnloadPlugins();
 
-    // std::unique_ptr<InputInstance> CreateInput(const std::string& name, const std::string& pluginId);
+    std::unique_ptr<InputInstance> CreateInput(const std::string& name, const std::string& pluginId);
     std::unique_ptr<ProcessorInstance> CreateProcessor(const std::string& name, const std::string& pluginId);
     // std::unique_ptr<FlusherInstance> CreateFlusher(const std::string& name, const std::string& pluginId);
 
@@ -48,7 +50,7 @@ private:
 
     void LoadStaticPlugins();
     void LoadDynamicPlugins(const std::set<std::string>& plugins);
-    // void RegisterInputCreator(PluginCreator* creator);
+    void RegisterInputCreator(PluginCreator* creator);
     void RegisterProcessorCreator(PluginCreator* creator);
     // void RegisterFlusherCreator(PluginCreator* creator);
     PluginCreator* LoadProcessorPlugin(DynamicLibLoader& loader, const std::string pluginName);
